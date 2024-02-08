@@ -21,5 +21,19 @@ public class Flight {
   public List<Passenger> getPassengerList() {
     return Collections.unmodifiableList(passengers);
   }
-  
+
+  public boolean addPassenger(Passenger passenger) {
+    switch (flightType) {
+    case "Economy":
+      return passengers.add(passenger);
+    case "Business":
+      if (passenger.isVip()) {
+        return passengers.add(passenger);
+      } else {
+        return false;
+      }
+    default:
+      throw new RuntimeException("이상한 항공편 형태");
+    }
+  }
 }
