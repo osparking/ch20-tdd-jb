@@ -33,7 +33,22 @@ public class Flight {
         return false;
       }
     default:
-      throw new RuntimeException("이상한 항공편 형태");
+      throw new RuntimeException("이상한 항공편 형태: " + flightType);
+    }
+  }
+
+  public boolean removePassenger(Passenger passenger) {
+    switch (flightType) {
+    case "Economy":
+      if (passenger.isVip()) {
+        return false;
+      } else {
+        return passengers.remove(passenger);
+      }
+    case "Business":
+      return false;
+    default:
+      throw new RuntimeException("이상한 항공편 형태: " + flightType);
     }
   }
 }
